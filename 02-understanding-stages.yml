@@ -8,41 +8,53 @@ pool:
 stages: 
 - stage: Build
   jobs: 
-  - job: build_job
+  - job: first_job
     steps: 
     - script: |
         echo building first job.
         echo printing enviroment variable sercret.
     - bash: echo $(UnderstandingStagesVariable)
+    - bash: echo $(Build.BuildNumber)
+    - bash: echo $(Build.BuildId)
+    - bash: echo Source branch $(Build.SourceBranchName)
+    - bash: echo artifcat staging dir $(Build.ArtifactStagingDirectory)
 
-- stage: DevDeploy
-  variables:
-    enviromentName: DEV
-  dependsOn: Build
-  jobs: 
-  - job: dev_deploy_firstjob
-    steps:
-    - bash: echo deploying to dev command 1.
-  - job: dev_deploy_secondjob
-    dependsOn: dev_deploy_firstjob
+  - job: second_job
+    dependsOn: first_job
     steps: 
-    - bash: echo deploying to $(enviromentName) command 2.
+    - script: |
+        echo running second job.
+        echo finished running second job.
 
-- stage: QADeploy
-  dependsOn: DevDeploy
-  jobs: 
-  - job: QA_deploy_firstjob
-    steps: 
-    - bash: echo QA deploy command 1
-  - job: QA_deploy_secondjob
-    dependsOn: QA_deploy_firstjob
-    steps: 
-    - bash: echo QA deploy commad 2
 
-- stage: ProdDeploy
-  dependsOn: QADeploy
-  jobs: 
-  - job: Prod_deploy_job
-    steps:
-    - bash: echo Prod deploy command 1
+# - stage: DevDeploy
+#   variables:
+#     enviromentName: DEV
+#   dependsOn: Build
+#   jobs: 
+#   - job: dev_deploy_firstjob
+#     steps:
+#     - bash: echo deploying to dev command 1.
+#   - job: dev_deploy_secondjob
+#     dependsOn: dev_deploy_firstjob
+#     steps: 
+#     - bash: echo deploying to $(enviromentName) command 2.
+
+# - stage: QADeploy
+#   dependsOn: DevDeploy
+#   jobs: 
+#   - job: QA_deploy_firstjob
+#     steps: 
+#     - bash: echo QA deploy command 1
+#   - job: QA_deploy_secondjob
+#     dependsOn: QA_deploy_firstjob
+#     steps: 
+#     - bash: echo QA deploy commad 2
+
+# - stage: ProdDeploy
+  # dependsOn: QADeploy
+  # jobs: 
+  # - job: Prod_deploy_job
+  #   steps:
+  #   - bash: echo Prod deploy command 1
 

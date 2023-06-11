@@ -12,9 +12,12 @@ stages:
     steps: 
     - script: |
         echo building first job.
-        echo $(UnderstandingStagesVariable)
+        echo printing enviroment variable sercret.
+    - bash: echo $(UnderstandingStagesVariable)
 
 - stage: DevDeploy
+  variables:
+    enviromentName: DEV
   dependsOn: Build
   jobs: 
   - job: dev_deploy_firstjob
@@ -23,7 +26,7 @@ stages:
   - job: dev_deploy_secondjob
     dependsOn: dev_deploy_firstjob
     steps: 
-    - bash: echo deploying to dev command 2.
+    - bash: echo deploying to $(enviromentName) command 2.
 
 - stage: QADeploy
   dependsOn: DevDeploy

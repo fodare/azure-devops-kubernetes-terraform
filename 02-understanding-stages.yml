@@ -15,29 +15,29 @@ stages:
 - stage: DevDeploy
   dependsOn: Build
   jobs: 
-  - job: dev-deploy-job1
+  - job: dev_deploy_firstjob
     steps:
     - bash: echo deploying to dev command 1.
-  - job: dev-deploy-job2
-    dependsOn: dev-deploy-job1
+  - job: dev_deploy_secondjob
+    dependsOn: dev_deploy_firstjob
     steps: 
     - bash: echod deploying to dev command 2.
 
 - stage: QADeploy
   dependsOn: DevDeploy
   jobs: 
-  - job: QA-deploy-job1
+  - job: QA_deploy_firstjob
     steps: 
     - bash: echo QA deploy command 1
-  - job: QA-deploy-job2
-    dependsOn: QA-deploy-job1
+  - job: QA_deploy_secondjob
+    dependsOn: QA_deploy_firstjob
     steps: 
     - bash: echo QA deploy commad 2
 
 - stage: ProdDeploy
   dependsOn: QADeploy
   jobs: 
-  - job: Prod-deploy-job1
+  - job: Prod_deploy_job
     steps:
     - bash: echo Prod deploy command 1
 

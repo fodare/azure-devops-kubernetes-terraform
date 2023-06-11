@@ -18,6 +18,7 @@ jobs:
     displayName: 'Run a one-line script'
 
 - job: job2
+  dependsOn: job1
   displayName: "Job 2"
   steps:
   - script: |

@@ -18,7 +18,7 @@ stages:
     - bash: echo $(Build.BuildId)
     - bash: echo Source branch $(Build.SourceBranchName)
     - bash: echo artifcat staging dir $(Build.ArtifactStagingDirectory)
-    - bash: java -version
+    # - bash: java -version
     - bash: node --version
     - bash: pyton3 --version
     - bash: ls -R $(Build.ArtifactStagingDirecotry)

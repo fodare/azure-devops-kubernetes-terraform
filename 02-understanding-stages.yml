@@ -20,7 +20,7 @@ stages:
     - bash: echo artifcat staging dir $(Build.ArtifactStagingDirectory)
     # - bash: java -version
     - bash: node --version
-    - bash: pyton3 --version
+    - bash: python3 --version
     - bash: ls -R $(Build.ArtifactStagingDirecotry)
     - task: CopyFiles@2
       inputs:

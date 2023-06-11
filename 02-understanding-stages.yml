@@ -37,7 +37,11 @@ stages:
     - script: |
         echo running second job.
         echo finished running second job.
-
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
 
 # - stage: DevDeploy
 #   variables:

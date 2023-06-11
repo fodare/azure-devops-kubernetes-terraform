@@ -21,7 +21,7 @@ stages:
   - job: dev_deploy_secondjob
     dependsOn: dev_deploy_firstjob
     steps: 
-    - bash: echod deploying to dev command 2.
+    - bash: echo deploying to dev command 2.
 
 - stage: QADeploy
   dependsOn: DevDeploy

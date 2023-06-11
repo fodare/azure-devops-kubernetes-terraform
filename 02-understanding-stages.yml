@@ -10,7 +10,9 @@ stages:
   jobs: 
   - job: build_job
     steps: 
-      - bash: echo building first job.
+    - script: |
+        echo building first job.
+        echo $(UnderstandingStagesVariable)
 
 - stage: DevDeploy
   dependsOn: Build

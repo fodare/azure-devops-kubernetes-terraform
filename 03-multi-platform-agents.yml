@@ -2,15 +2,15 @@
 trigger:
 - main
 
-# strategy:
-#   matrix:
-#     linux: 
-#       operatingSystem: Default
-#     windows: 
-#       operatingSystem: Default
+strategy:
+  matrix:
+    linux: 
+      operatingSystem: Default
+    windows: 
+      operatingSystem: Default
 
 pool:
-  name: Default
+  name: $(operatingSystem)
   # vmImage: ubuntu-latest
 
 steps:

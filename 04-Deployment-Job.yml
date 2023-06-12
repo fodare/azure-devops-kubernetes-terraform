@@ -1,0 +1,35 @@
+# Sample deploymeny yaml.
+trigger:
+- main
+
+pool:
+  name: Default
+  # vmImage: ubuntu-latest
+
+stages: 
+- stage: Build
+  jobs: 
+  - job: BuildJob
+    steps: 
+    - bash: echo "Building application"
+
+- stage: DevDeploy
+  jobs: 
+  - deployment: DevDeployment
+    environment: DEV
+    strategy: 
+      runOnce:
+        deploy:
+          steps:
+            - bash: echo "Deploying to DEV server"
+
+- stage: QADeploy
+  jobs:
+    - deployment: QADeployment
+      environment: QA 
+      strategy:
+        runOnce: 
+          deploy:
+            steps:
+              - bash: echo "Deploying to QA server"
+

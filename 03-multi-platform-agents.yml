@@ -5,9 +5,9 @@ trigger:
 strategy:
   matrix:
     linux: 
-      operatingSystem: default
+      operatingSystem: Default
     windows: 
-      operatingSystem: default
+      operatingSystem: Default
 
 pool:
   name: $(operatingSystem)

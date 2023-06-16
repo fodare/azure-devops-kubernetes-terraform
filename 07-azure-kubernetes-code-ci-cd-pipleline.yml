@@ -49,7 +49,7 @@ stages:
         buildType: 'current'
         artifactName: 'manifets'
         itemPattern: '**/*.yaml'
-        targetPath: '$(Build.ArtifactStagingDirectory)'
+        targetPath: '$(System.ArtifactsDirectory )'
     
     - task: KubernetesManifest@1
       inputs:

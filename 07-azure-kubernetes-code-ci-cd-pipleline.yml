@@ -25,12 +25,12 @@ stages:
           repository: 'foloo12/currency-exchange-devops'
           command: 'buildAndPush'
           Dockerfile: '**/Dockerfile'
-      #     tags: '$(tag)'
-      # - task: CopyFiles@2
-      #   inputs:
-      #     SourceFolder: '$(System.DefaultWorkingDirectory)'
-      #     Contents: '**/*.yaml'
-      #     TargetFolder: '$(Build.ArtifactStagingDirecotry)'
+          tags: '$(tag)'
+      - task: CopyFiles@2
+        inputs:
+          SourceFolder: '$(Build.SourcesDirectory)'
+          Contents: '**/*.yaml'
+          TargetFolder: '$(Build.ArtifactStagingDirecotry)'
       - task: PublishBuildArtifacts@1
         inputs:
           PathtoPublish: '$(Build.ArtifactStagingDirectory)'
